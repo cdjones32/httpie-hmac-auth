@@ -56,6 +56,9 @@ class HmacAuth:
         path = url.path
 
         string_to_sign = '\n'.join([method, content_md5, content_type, httpdate, path]).encode('utf-8')
+        
+        print(string_to_sign)
+        
         digest = hmac.new(self.secret_key, string_to_sign, hashlib.sha256).digest()
         signature = base64.b64encode(digest).decode('utf-8')
 
